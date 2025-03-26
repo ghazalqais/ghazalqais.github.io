@@ -54,8 +54,9 @@
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <video width="100%" autoplay loop muted aria-label="Introductory video of Qais Ghazal">
+                    <video width="100%" autoplay loop muted playsinline aria-label="Introductory video of Qais Ghazal">
                         <source src="Qais_cut.mp4" type="video/mp4">
+                        <source src="Qais_cut.webm" type="video/webm">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -124,7 +125,7 @@
                             <span class="project-tag">Data Preprocessing</span>
                         </div>
                         <div class="project-links">
-                            <!-- <a href="https://github.com/yourusername/project1"><i class="fas fa-code"></i> View Code</a> -->
+                            <!-- <a href="https://github.com/ghazalqais/project1"><i class="fas fa-code"></i> View Code</a> -->
                             <!-- <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
                         </div>
                     </div>
@@ -142,7 +143,7 @@
                             <span class="project-tag">Database Design</span>
                         </div>
                         <div class="project-links">
-                            <!-- <a href="https://github.com/yourusername/project2"><i class="fas fa-code"></i> View Code</a> -->
+                            <!-- <a href="https://github.com/ghazalqais/project2"><i class="fas fa-code"></i> View Code</a> -->
                             <!-- <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
                         </div>
                     </div>
@@ -161,7 +162,7 @@
                             <span class="project-tag">Computer Vision</span>
                         </div>
                         <div class="project-links">
-                            <!-- <a href="https://github.com/yourusername/project3"><i class="fas fa-code"></i> View Code</a> -->
+                            <!-- <a href="https://github.com/ghazalqais/project3"><i class="fas fa-code"></i> View Code</a> -->
                             <!-- <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
                         </div>
                     </div>
@@ -180,7 +181,7 @@
                             <span class="project-tag">Big Data</span>
                         </div>
                         <div class="project-links">
-                            <!-- <a href="https://github.com/yourusername/project4"><i class="fas fa-code"></i> View Code</a> -->
+                            <!-- <a href="https://github.com/ghazalqais/project4"><i class="fas fa-code"></i> View Code</a> -->
                             <!-- <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
                         </div>
                     </div>
@@ -199,7 +200,7 @@
                             <span class="project-tag">Simulation</span>
                         </div>
                         <div class="project-links">
-                            <!-- <a href="https://github.com/yourusername/project5"><i class="fas fa-code"></i> View Code</a> -->
+                            <!-- <a href="https://github.com/ghazalqais/project5"><i class="fas fa-code"></i> View Code</a> -->
                             <!-- <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a> -->
                         </div>
                     </div>
@@ -288,16 +289,8 @@
                 <div class="contact-form">
                     <form id="contactForm" action="https://formspree.io/f/xjkyolyd" method="POST">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" required>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
@@ -319,9 +312,8 @@
                     <h2>Qais<span>Ghazal</span></h2>
                     <p>AI Specialist & Machine Learning Engineer focusing on developing intelligent systems.</p>
                     <div class="social-links">
-                        <a href="https://github.com/yourusername" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="https://github.com/ghazalqais" class="social-link"><i class="fab fa-github"></i></a>
                         <a href="https://www.linkedin.com/in/qais-ghazal-b80b43230/" class="social-link"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://twitter.com/yourusername" class="social-link"><i class="fab fa-twitter"></i></a>
                         <a href="https://www.kaggle.com/qghazal" class="social-link"><i class="fab fa-kaggle"></i></a>
                     </div>
                 </div>
@@ -340,7 +332,7 @@
                     <ul>
                         <li><a href="resume.pdf">Resume/CV</a></li>
                         <li><a href="#">Blog</a></li>
-                        <li><a href="https://github.com/yourusername">GitHub</a></li>
+                        <li><a href="https://github.com/ghazalqais">GitHub</a></li>
                         <li><a href="https://www.linkedin.com/in/qais-ghazal-b80b43230/">LinkedIn</a></li>
                     </ul>
                 </div>
@@ -374,7 +366,8 @@
             });
         });
 
-        // Form submission with Formspree
+        // Form submission with Formspree (temporarily commented out for testing)
+        /*
         const form = document.getElementById('contactForm');
         const formStatus = document.getElementById('formStatus');
         form.addEventListener('submit', async (e) => {
@@ -401,6 +394,7 @@
                 formStatus.style.color = 'red';
             }
         });
+        */
 
         // Highlight active nav link on scroll
         window.addEventListener('scroll', () => {
