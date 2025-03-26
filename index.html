@@ -54,12 +54,13 @@
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <video 
+                   <video 
                         width="100%" 
                         autoplay 
                         loop 
                         muted 
                         playsinline 
+                        id="introVideo"
                         aria-label="Introductory video of Qais Ghazal">
                         <source src="Qais_cut.mp4" type="video/mp4">
                         <source src="Qais_cut.webm" type="video/webm">
@@ -427,6 +428,24 @@
                 }
             });
         });
+    window.addEventListener('scroll', () => {
+        // ... existing scroll event code
+    });
+    
+    // New video autoplay handling
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('introVideo');
+        
+        // Try to play video, handle potential autoplay restrictions
+        const playPromise = video.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                // Autoplay was prevented
+                console.log('Autoplay prevented', error);
+            });
+        }
+    });
     </script>
 </body>
 </html>
