@@ -2123,3 +2123,181 @@ footer {
         display: none;
     }
 }
+
+/* ===== LARGE SCREEN OPTIMIZATIONS ===== */
+@media (min-width: 1281px) {
+    .container {
+        max-width: 1400px;
+        padding: 0 2rem;
+    }
+    
+    .hero-content {
+        gap: 4rem;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+    
+    .hero-text {
+        max-width: 650px;
+    }
+    
+    .hero-image {
+        max-width: 550px;
+    }
+    
+    section {
+        padding: 5rem 0;
+    }
+    
+    .expertise-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 2.5rem;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1000px;
+        margin: 0 auto;
+        gap: 2.5rem;
+    }
+    
+    .contact-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        gap: 4rem;
+    }
+    
+    .contact-details {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 1600px) {
+    .container {
+        max-width: 1500px;
+    }
+    
+    .hero-content,
+    .about-content,
+    .contact-container {
+        max-width: 1350px;
+        margin: 0 auto;
+    }
+    
+    .title {
+        font-size: clamp(3rem, 4vw, 4.5rem);
+    }
+    
+    .section-title {
+        font-size: clamp(2.5rem, 3vw, 3.5rem);
+    }
+    
+    .timeline-wrapper {
+        max-width: 1100px;
+    }
+    
+    .timeline-content {
+        padding: 2.5rem;
+    }
+    
+    .expertise-card,
+    .project-card {
+        padding: 2.5rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1700px;
+    }
+    
+    #hero {
+        max-height: 100vh;
+    }
+    
+    .expertise-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1400px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1400px;
+    }
+    
+    .timeline-content {
+        width: 45%;
+        padding: 3rem;
+    }
+    
+    .timeline-date {
+        width: 220px;
+    }
+    
+    .video-container {
+        max-width: 700px;
+    }
+}
+
+@media (min-width: 2560px) {
+    :root {
+        --space-xxl: 6rem;
+        --space-xl: 4rem;
+        --space-lg: 2.5rem;
+    }
+    
+    .container {
+        max-width: 2000px;
+    }
+    
+    body {
+        font-size: 18px;
+    }
+    
+    .title {
+        font-size: clamp(4rem, 5vw, 6rem);
+    }
+    
+    .section-title {
+        font-size: clamp(3rem, 4vw, 4.5rem);
+    }
+    
+    .expertise-card,
+    .project-card,
+    .contact-card {
+        padding: 3rem;
+    }
+    
+    .btn {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .video-container {
+        max-width: 900px;
+    }
+    
+    footer {
+        padding: 6rem 0 2rem;
+    }
+    
+    .timeline-content {
+        padding: 4rem;
+    }
+    
+    .expertise-grid,
+    .projects-grid {
+        max-width: 1600px;
+    }
+    
+    .modal-content {
+        max-width: 1200px;
+    }
+    
+    .project-detail {
+        gap: 4rem;
+    }
+}
