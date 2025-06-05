@@ -2126,9 +2126,36 @@ footer {
 
 /* ===== LARGE SCREEN OPTIMIZATIONS ===== */
 @media (min-width: 1281px) {
+    :root {
+        --space-xxl: 4rem;
+        --space-xl: 3rem;
+        --space-lg: 2rem;
+    }
+    
     .container {
         max-width: 1400px;
         padding: 0 2rem;
+    }
+    
+    body {
+        font-size: 17px;
+    }
+    
+    .title {
+        font-size: clamp(3rem, 4vw, 4.5rem);
+    }
+    
+    .subtitle {
+        font-size: clamp(1.5rem, 2vw, 2.2rem);
+    }
+    
+    .section-title {
+        font-size: clamp(2.5rem, 3vw, 3.2rem);
+    }
+    
+    .section-subtitle {
+        font-size: 1.3rem;
+        max-width: 800px;
     }
     
     .hero-content {
@@ -2145,6 +2172,22 @@ footer {
         max-width: 550px;
     }
     
+    .hero-description {
+        font-size: 1.3rem;
+        max-width: 600px;
+    }
+    
+    .btn {
+        padding: 1rem 2.2rem;
+        font-size: 1.1rem;
+    }
+    
+    .social-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+    
     section {
         padding: 5rem 0;
     }
@@ -2156,11 +2199,56 @@ footer {
         gap: 2.5rem;
     }
     
+    .expertise-card {
+        padding: 2.5rem;
+    }
+    
+    .expertise-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 2.2rem;
+    }
+    
+    .expertise-card h3 {
+        font-size: 1.7rem;
+    }
+    
+    .skill-list li {
+        font-size: 1rem;
+        padding: var(--space-sm) var(--space-lg);
+    }
+    
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
         max-width: 1000px;
         margin: 0 auto;
         gap: 2.5rem;
+    }
+    
+    .project-card {
+        padding: 0;
+    }
+    
+    .project-content {
+        padding: 2rem;
+    }
+    
+    .project-title {
+        font-size: 1.6rem;
+    }
+    
+    .project-description {
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+    
+    .project-image img {
+        height: 250px;
+    }
+    
+    .tech-tag {
+        font-size: 0.95rem;
+        padding: var(--space-sm) var(--space-lg);
     }
     
     .contact-container {
@@ -2173,84 +2261,111 @@ footer {
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
     }
-}
-
-@media (min-width: 1600px) {
-    .container {
-        max-width: 1500px;
+    
+    .contact-card {
+        padding: 2rem;
     }
     
-    .hero-content,
-    .about-content,
-    .contact-container {
-        max-width: 1350px;
-        margin: 0 auto;
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
     }
     
-    .title {
-        font-size: clamp(3rem, 4vw, 4.5rem);
+    .contact-card h3 {
+        font-size: 1.4rem;
     }
     
-    .section-title {
-        font-size: clamp(2.5rem, 3vw, 3.5rem);
+    .contact-card p {
+        font-size: 1.05rem;
+    }
+    
+    .contact-link {
+        font-size: 1.1rem;
+    }
+    
+    .contact-form {
+        padding: 2.5rem;
+    }
+    
+    .input-wrapper input,
+    .input-wrapper textarea {
+        padding: 1.2rem 1.2rem 1.2rem 3.5rem;
+        font-size: 1.05rem;
     }
     
     .timeline-wrapper {
-        max-width: 1100px;
+        max-width: 1000px;
     }
     
     .timeline-content {
         padding: 2.5rem;
     }
     
-    .expertise-card,
-    .project-card {
-        padding: 2.5rem;
-    }
-}
-
-@media (min-width: 1920px) {
-    .container {
-        max-width: 1700px;
+    .timeline-content h3 {
+        font-size: 1.6rem;
     }
     
-    #hero {
-        max-height: 100vh;
+    .timeline-content h4 {
+        font-size: 1.2rem;
     }
     
-    .expertise-grid {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 1400px;
+    .timeline-content p {
+        font-size: 1.05rem;
+        line-height: 1.8;
     }
     
-    .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 1400px;
-    }
-    
-    .timeline-content {
-        width: 45%;
-        padding: 3rem;
-    }
-    
-    .timeline-date {
-        width: 220px;
+    .timeline-tag {
+        font-size: 0.95rem;
+        padding: var(--space-sm) var(--space-lg);
     }
     
     .video-container {
-        max-width: 700px;
+        max-width: 600px;
+    }
+    
+    .modal-content {
+        max-width: 1000px;
+        padding: 0;
+    }
+    
+    .modal-header {
+        padding: 2rem;
+    }
+    
+    .modal-body {
+        padding: 2rem;
+    }
+    
+    .project-detail {
+        gap: 3rem;
+    }
+    
+    .project-detail-content h3 {
+        font-size: 2rem;
+    }
+    
+    .project-detail-section h4 {
+        font-size: 1.3rem;
+    }
+    
+    .project-detail-section p,
+    .project-detail-section li {
+        font-size: 1.05rem;
+        line-height: 1.8;
     }
 }
 
-@media (min-width: 2560px) {
+@media (min-width: 1600px) {
     :root {
-        --space-xxl: 6rem;
-        --space-xl: 4rem;
+        --space-xxl: 5rem;
+        --space-xl: 3.5rem;
         --space-lg: 2.5rem;
     }
     
     .container {
-        max-width: 2000px;
+        max-width: 1500px;
+        padding: 0 2.5rem;
     }
     
     body {
@@ -2258,46 +2373,654 @@ footer {
     }
     
     .title {
-        font-size: clamp(4rem, 5vw, 6rem);
+        font-size: clamp(3.5rem, 4.5vw, 5rem);
+    }
+    
+    .subtitle {
+        font-size: clamp(1.8rem, 2.2vw, 2.5rem);
     }
     
     .section-title {
-        font-size: clamp(3rem, 4vw, 4.5rem);
+        font-size: clamp(2.8rem, 3.5vw, 3.8rem);
     }
     
-    .expertise-card,
-    .project-card,
+    .section-subtitle {
+        font-size: 1.4rem;
+        max-width: 850px;
+    }
+    
+    .hero-content,
+    .about-content,
+    .contact-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .hero-text {
+        max-width: 700px;
+    }
+    
+    .hero-image {
+        max-width: 600px;
+    }
+    
+    .hero-description {
+        font-size: 1.4rem;
+        max-width: 650px;
+    }
+    
+    .btn {
+        padding: 1.1rem 2.5rem;
+        font-size: 1.15rem;
+    }
+    
+    .social-icon {
+        width: 55px;
+        height: 55px;
+        font-size: 1.5rem;
+    }
+    
+    section {
+        padding: 6rem 0;
+    }
+    
+    .expertise-grid {
+        max-width: 1300px;
+        gap: 3rem;
+    }
+    
+    .expertise-card {
+        padding: 3rem;
+    }
+    
+    .expertise-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+    
+    .expertise-card h3 {
+        font-size: 1.8rem;
+    }
+    
+    .skill-list li {
+        font-size: 1.05rem;
+        padding: var(--space-sm) var(--space-xl);
+    }
+    
+    .projects-grid {
+        max-width: 1200px;
+        gap: 3rem;
+    }
+    
+    .project-content {
+        padding: 2.5rem;
+    }
+    
+    .project-title {
+        font-size: 1.8rem;
+    }
+    
+    .project-description {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .project-image img {
+        height: 280px;
+    }
+    
+    .tech-tag {
+        font-size: 1rem;
+        padding: var(--space-sm) var(--space-xl);
+    }
+    
+    .contact-details {
+        gap: 2.5rem;
+    }
+    
+    .contact-card {
+        padding: 2.5rem;
+    }
+    
+    .contact-icon {
+        width: 65px;
+        height: 65px;
+        font-size: 1.6rem;
+    }
+    
+    .contact-card h3 {
+        font-size: 1.5rem;
+    }
+    
+    .contact-card p {
+        font-size: 1.1rem;
+    }
+    
+    .contact-link {
+        font-size: 1.15rem;
+    }
+    
+    .contact-form {
+        padding: 3rem;
+    }
+    
+    .input-wrapper input,
+    .input-wrapper textarea {
+        padding: 1.3rem 1.3rem 1.3rem 4rem;
+        font-size: 1.1rem;
+    }
+    
+    .timeline-wrapper {
+        max-width: 1100px;
+    }
+    
+    .timeline-content {
+        padding: 3rem;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.7rem;
+    }
+    
+    .timeline-content h4 {
+        font-size: 1.3rem;
+    }
+    
+    .timeline-content p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .timeline-tag {
+        font-size: 1rem;
+    }
+    
+    .video-container {
+        max-width: 700px;
+    }
+    
+    .modal-content {
+        max-width: 1100px;
+    }
+    
+    .modal-header {
+        padding: 2.5rem;
+    }
+    
+    .modal-body {
+        padding: 2.5rem;
+    }
+    
+    .project-detail {
+        gap: 4rem;
+    }
+    
+    .project-detail-content h3 {
+        font-size: 2.2rem;
+    }
+    
+    .project-detail-section h4 {
+        font-size: 1.4rem;
+    }
+    
+    .project-detail-section p,
+    .project-detail-section li {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .tech-item {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1920px) {
+    :root {
+        --space-xxl: 6rem;
+        --space-xl: 4rem;
+        --space-lg: 3rem;
+    }
+    
+    .container {
+        max-width: 1700px;
+        padding: 0 3rem;
+    }
+    
+    body {
+        font-size: 19px;
+    }
+    
+    .title {
+        font-size: clamp(4rem, 5vw, 5.5rem);
+    }
+    
+    .subtitle {
+        font-size: clamp(2rem, 2.5vw, 2.8rem);
+    }
+    
+    .section-title {
+        font-size: clamp(3.2rem, 4vw, 4.2rem);
+    }
+    
+    .section-subtitle {
+        font-size: 1.5rem;
+        max-width: 900px;
+    }
+    
+    .hero-description {
+        font-size: 1.5rem;
+        max-width: 700px;
+    }
+    
+    .btn {
+        padding: 1.2rem 2.8rem;
+        font-size: 1.2rem;
+    }
+    
+    .social-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
+    }
+    
+    #hero {
+        max-height: 100vh;
+    }
+    
+    section {
+        padding: 7rem 0;
+    }
+    
+    .expertise-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1400px;
+        gap: 3.5rem;
+    }
+    
+    .expertise-card {
+        padding: 3.5rem;
+    }
+    
+    .expertise-icon {
+        width: 90px;
+        height: 90px;
+        font-size: 2.8rem;
+    }
+    
+    .expertise-card h3 {
+        font-size: 2rem;
+    }
+    
+    .skill-list li {
+        font-size: 1.1rem;
+        padding: var(--space-md) var(--space-xl);
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1500px;
+        gap: 3.5rem;
+    }
+    
+    .project-content {
+        padding: 3rem;
+    }
+    
+    .project-title {
+        font-size: 2rem;
+    }
+    
+    .project-description {
+        font-size: 1.15rem;
+        line-height: 1.8;
+    }
+    
+    .project-image img {
+        height: 300px;
+    }
+    
+    .tech-tag {
+        font-size: 1.05rem;
+        padding: var(--space-md) var(--space-xl);
+    }
+    
+    .contact-details {
+        gap: 3rem;
+    }
+    
     .contact-card {
         padding: 3rem;
     }
     
-    .btn {
-        padding: 1.2rem 2.5rem;
-        font-size: 1.1rem;
+    .contact-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.7rem;
     }
     
-    .video-container {
-        max-width: 900px;
+    .contact-card h3 {
+        font-size: 1.6rem;
     }
     
-    footer {
-        padding: 6rem 0 2rem;
+    .contact-card p {
+        font-size: 1.15rem;
+    }
+    
+    .contact-link {
+        font-size: 1.2rem;
+    }
+    
+    .contact-form {
+        padding: 3.5rem;
+    }
+    
+    .input-wrapper input,
+    .input-wrapper textarea {
+        padding: 1.4rem 1.4rem 1.4rem 4.5rem;
+        font-size: 1.15rem;
     }
     
     .timeline-content {
-        padding: 4rem;
+        width: 45%;
+        padding: 3.5rem;
     }
     
-    .expertise-grid,
-    .projects-grid {
-        max-width: 1600px;
+    .timeline-date {
+        width: 240px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.9rem;
+    }
+    
+    .timeline-content h4 {
+        font-size: 1.4rem;
+    }
+    
+    .timeline-content p {
+        font-size: 1.15rem;
+        line-height: 1.8;
+    }
+    
+    .timeline-tag {
+        font-size: 1.05rem;
+        padding: var(--space-md) var(--space-xl);
+    }
+    
+    .video-container {
+        max-width: 800px;
     }
     
     .modal-content {
         max-width: 1200px;
     }
     
+    .modal-header {
+        padding: 3rem;
+    }
+    
+    .modal-body {
+        padding: 3rem;
+    }
+    
     .project-detail {
+        gap: 4.5rem;
+    }
+    
+    .project-detail-content h3 {
+        font-size: 2.5rem;
+    }
+    
+    .project-detail-section h4 {
+        font-size: 1.5rem;
+    }
+    
+    .project-detail-section p,
+    .project-detail-section li {
+        font-size: 1.15rem;
+        line-height: 1.8;
+    }
+    
+    .tech-item {
+        padding: 12px 25px;
+        font-size: 1.05rem;
+    }
+    
+    footer {
+        padding: 7rem 0 3rem;
+    }
+    
+    .footer-logo h2 {
+        font-size: 2rem;
+    }
+    
+    .footer-info p {
+        font-size: 1.05rem;
+    }
+    
+    .social-link {
+        width: 50px;
+        height: 50px;
+        font-size: 1.4rem;
+    }
+}
+
+@media (min-width: 2560px) {
+    :root {
+        --space-xxl: 8rem;
+        --space-xl: 5rem;
+        --space-lg: 4rem;
+        --space-md: 1.5rem;
+    }
+    
+    .container {
+        max-width: 2200px;
+        padding: 0 4rem;
+    }
+    
+    body {
+        font-size: 20px;
+    }
+    
+    .title {
+        font-size: clamp(5rem, 6vw, 7rem);
+    }
+    
+    .subtitle {
+        font-size: clamp(2.5rem, 3vw, 3.5rem);
+    }
+    
+    .section-title {
+        font-size: clamp(4rem, 5vw, 5.5rem);
+    }
+    
+    .section-subtitle {
+        font-size: 1.8rem;
+        max-width: 1000px;
+    }
+    
+    .hero-text {
+        max-width: 800px;
+    }
+    
+    .hero-image {
+        max-width: 700px;
+    }
+    
+    .hero-description {
+        font-size: 1.8rem;
+        max-width: 800px;
+    }
+    
+    .btn {
+        padding: 1.5rem 3.5rem;
+        font-size: 1.4rem;
+    }
+    
+    .social-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+    
+    section {
+        padding: 10rem 0;
+    }
+    
+    .expertise-grid,
+    .projects-grid {
+        max-width: 1800px;
         gap: 4rem;
+    }
+    
+    .expertise-card,
+    .project-card .project-content,
+    .contact-card {
+        padding: 4rem;
+    }
+    
+    .expertise-icon {
+        width: 100px;
+        height: 100px;
+        font-size: 3.2rem;
+    }
+    
+    .expertise-card h3 {
+        font-size: 2.3rem;
+    }
+    
+    .skill-list li {
+        font-size: 1.3rem;
+        padding: var(--space-md) var(--space-xxl);
+    }
+    
+    .project-title {
+        font-size: 2.3rem;
+    }
+    
+    .project-description {
+        font-size: 1.3rem;
+        line-height: 1.9;
+    }
+    
+    .project-image img {
+        height: 350px;
+    }
+    
+    .tech-tag {
+        font-size: 1.2rem;
+        padding: var(--space-md) var(--space-xxl);
+    }
+    
+    .contact-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+    
+    .contact-card h3 {
+        font-size: 1.8rem;
+    }
+    
+    .contact-card p {
+        font-size: 1.3rem;
+    }
+    
+    .contact-link {
+        font-size: 1.4rem;
+    }
+    
+    .contact-form {
+        padding: 4.5rem;
+    }
+    
+    .input-wrapper input,
+    .input-wrapper textarea {
+        padding: 1.8rem 1.8rem 1.8rem 5rem;
+        font-size: 1.3rem;
+    }
+    
+    .timeline-content {
+        padding: 4.5rem;
+    }
+    
+    .timeline-content h3 {
+        font-size: 2.2rem;
+    }
+    
+    .timeline-content h4 {
+        font-size: 1.6rem;
+    }
+    
+    .timeline-content p {
+        font-size: 1.3rem;
+        line-height: 1.9;
+    }
+    
+    .timeline-tag {
+        font-size: 1.2rem;
+        padding: var(--space-md) var(--space-xxl);
+    }
+    
+    .video-container {
+        max-width: 1000px;
+    }
+    
+    .modal-content {
+        max-width: 1400px;
+    }
+    
+    .modal-header,
+    .modal-body {
+        padding: 4rem;
+    }
+    
+    .project-detail {
+        gap: 5rem;
+    }
+    
+    .project-detail-content h3 {
+        font-size: 3rem;
+    }
+    
+    .project-detail-section h4 {
+        font-size: 1.8rem;
+    }
+    
+    .project-detail-section p,
+    .project-detail-section li {
+        font-size: 1.3rem;
+        line-height: 1.9;
+    }
+    
+    .tech-item {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+    }
+    
+    footer {
+        padding: 10rem 0 4rem;
+    }
+    
+    .footer-logo h2 {
+        font-size: 2.5rem;
+    }
+    
+    .footer-info p {
+        font-size: 1.2rem;
+    }
+    
+    .social-link {
+        width: 60px;
+        height: 60px;
+        font-size: 1.6rem;
+    }
+    
+    #scrollToTop {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
     }
 }
