@@ -20,15 +20,14 @@ class PortfolioChatWidget {
         this.init();
     }
     
-    getApiUrl() {
-        // Smart API URL detection for development vs production
-        const hostname = window.location.hostname;
-        if (hostname === 'localhost' || hostname === '127.0.0.1') {
-            return 'http://localhost:5000';
-        }
-        // For production, use relative path or your domain
-        return '/api'; // Adjust this for your production setup
-    }
+   getApiUrl() {
+    const hostname = window.location.hostname;
+    const isDevelopment = hostname === 'localhost' || hostname === '127.0.0.1';
+    
+    return isDevelopment 
+        ? 'http://localhost:5000'
+        : 'https://portfolio-rag-api-pwag7phooa-uc.a.run.app';
+}
     
     getOrCreateSession() {
         // Get existing session or create new one
