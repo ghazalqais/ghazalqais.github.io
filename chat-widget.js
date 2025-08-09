@@ -375,4 +375,5 @@ class PortfolioChatWidget {
 const portfolioChatWidget = new PortfolioChatWidget();
 
 // Export for potential external use
+
 window.PortfolioChatWidget = portfolioChatWidget;
