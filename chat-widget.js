@@ -1,6 +1,6 @@
 /**
  * Simple Portfolio Chat Widget
- * Clean, focused, production-ready
+ * Clean, focused, production-ready with KEYBOARD FIX
  */
 
 class PortfolioChatWidget {
@@ -14,20 +14,23 @@ class PortfolioChatWidget {
         this.isTyping = false;
         this.conversationStarted = false;
         
+        // KEYBOARD FIX: Add keyboard state
+        this.isKeyboardOpen = false;
+        this.initialViewportHeight = window.innerHeight;
+        
         // DOM elements (set after init)
         this.elements = {};
         
         this.init();
     }
     
-   
-getApiUrl() {
+   getApiUrl() {
     const hostname = window.location.hostname;
     const isDevelopment = hostname === 'localhost' || hostname === '127.0.0.1';
     
     return isDevelopment 
         ? 'http://localhost:5000'
-        : 'https://portfolio-rag-api-1001825982330.us-central1.run.app';
+        : 'https://portfolio-rag-api-pwag7phooa-uc.a.run.app';
 }
     
     getOrCreateSession() {
@@ -62,6 +65,7 @@ getApiUrl() {
         };
         
         this.setupEventListeners();
+        this.setupKeyboardDetection(); // KEYBOARD FIX: Add keyboard detection
         this.loadPreviousConversation();
     }
     
@@ -90,6 +94,135 @@ getApiUrl() {
         
         // Auto-resize input
         this.elements.input.addEventListener('input', this.autoResizeInput.bind(this));
+    }
+    
+    // KEYBOARD FIX: Setup keyboard detection
+    setupKeyboardDetection() {
+        // Method 1: Visual Viewport API (modern browsers)
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', () => this.handleKeyboard());
+        }
+        
+        // Method 2: Window resize fallback
+        window.addEventListener('resize', () => this.handleKeyboardFallback());
+        
+        // Method 3: Input focus/blur events (most reliable for mobile)
+        this.elements.input.addEventListener('focus', () => this.handleInputFocus());
+        this.elements.input.addEventListener('blur', () => this.handleInputBlur());
+        
+        // Method 4: Screen orientation change
+        if (screen && screen.orientation) {
+            screen.orientation.addEventListener('change', () => {
+                setTimeout(() => this.handleOrientationChange(), 500);
+            });
+        }
+    }
+    
+    // KEYBOARD FIX: Handle keyboard using Visual Viewport API
+    handleKeyboard() {
+        if (!window.visualViewport) return;
+        
+        const viewport = window.visualViewport;
+        const heightDiff = window.innerHeight - viewport.height;
+        
+        if (heightDiff > 150) { // Keyboard is likely open
+            if (!this.isKeyboardOpen) {
+                this.isKeyboardOpen = true;
+                this.elements.container.classList.add('keyboard-open');
+                this.scrollInputIntoView();
+                console.log('🎹 Keyboard detected (Visual Viewport)');
+            }
+        } else {
+            if (this.isKeyboardOpen) {
+                this.isKeyboardOpen = false;
+                this.elements.container.classList.remove('keyboard-open');
+                console.log('🎹 Keyboard hidden (Visual Viewport)');
+            }
+        }
+    }
+    
+    // KEYBOARD FIX: Fallback method using window resize
+    handleKeyboardFallback() {
+        const heightDiff = this.initialViewportHeight - window.innerHeight;
+        
+        if (heightDiff > 150) {
+            if (!this.isKeyboardOpen) {
+                this.isKeyboardOpen = true;
+                this.elements.container.classList.add('keyboard-open');
+                this.scrollInputIntoView();
+                console.log('🎹 Keyboard detected (Resize fallback)');
+            }
+        } else {
+            if (this.isKeyboardOpen) {
+                this.isKeyboardOpen = false;
+                this.elements.container.classList.remove('keyboard-open');
+                console.log('🎹 Keyboard hidden (Resize fallback)');
+            }
+        }
+    }
+    
+    // KEYBOARD FIX: Handle input focus (most reliable)
+    handleInputFocus() {
+        // Only on mobile devices
+        if (window.innerWidth <= 480) {
+            setTimeout(() => {
+                this.isKeyboardOpen = true;
+                this.elements.container.classList.add('keyboard-open');
+                this.scrollInputIntoView();
+                console.log('🎹 Keyboard detected (Input focus)');
+            }, 300); // Delay to allow keyboard animation
+        }
+    }
+    
+    // KEYBOARD FIX: Handle input blur
+    handleInputBlur() {
+        // Delay to avoid flicker when tapping send button
+        setTimeout(() => {
+            if (!this.elements.input.matches(':focus')) {
+                this.isKeyboardOpen = false;
+                this.elements.container.classList.remove('keyboard-open');
+                console.log('🎹 Keyboard hidden (Input blur)');
+            }
+        }, 100);
+    }
+    
+    // KEYBOARD FIX: Handle orientation change
+    handleOrientationChange() {
+        // Update initial height
+        this.initialViewportHeight = window.innerHeight;
+        
+        // Reset keyboard state to prevent stuck states
+        if (this.isKeyboardOpen && !this.elements.input.matches(':focus')) {
+            this.isKeyboardOpen = false;
+            this.elements.container.classList.remove('keyboard-open');
+        }
+        
+        console.log('📱 Orientation changed, reset keyboard state');
+    }
+    
+    // KEYBOARD FIX: Scroll input into view
+    scrollInputIntoView() {
+        setTimeout(() => {
+            // Multiple scroll strategies
+            this.elements.input.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center',
+                inline: 'nearest'
+            });
+            
+            // Backup scroll method
+            setTimeout(() => {
+                const inputRect = this.elements.input.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (inputRect.bottom > windowHeight - 20) {
+                    window.scrollTo({
+                        top: window.pageYOffset + (inputRect.bottom - windowHeight + 40),
+                        behavior: 'smooth'
+                    });
+                }
+            }, 100);
+        }, 100);
     }
     
     async loadPreviousConversation() {
@@ -138,6 +271,12 @@ getApiUrl() {
         this.elements.toggle.classList.remove('active');
         this.elements.container.classList.remove('open');
         this.isOpen = false;
+        
+        // KEYBOARD FIX: Reset keyboard state when closing
+        if (this.isKeyboardOpen) {
+            this.isKeyboardOpen = false;
+            this.elements.container.classList.remove('keyboard-open');
+        }
         
         this.trackEvent('chat_closed');
     }
@@ -207,6 +346,13 @@ getApiUrl() {
                 : "Sorry, something went wrong. Please try again in a moment.";
             
             this.addMessage(errorMsg, 'bot');
+        }
+        
+        // KEYBOARD FIX: Re-focus input after sending (keeps keyboard open)
+        if (this.isKeyboardOpen && window.innerWidth <= 480) {
+            setTimeout(() => {
+                this.elements.input.focus();
+            }, 100);
         }
     }
     
@@ -314,6 +460,30 @@ getApiUrl() {
         }
     }
     
+    // KEYBOARD FIX: Add debug method for testing keyboard detection
+    debugKeyboard() {
+        console.log('🔍 Keyboard Debug Info:');
+        console.log('  isKeyboardOpen:', this.isKeyboardOpen);
+        console.log('  Container has keyboard-open class:', this.elements.container.classList.contains('keyboard-open'));
+        console.log('  Input is focused:', this.elements.input.matches(':focus'));
+        console.log('  Window inner height:', window.innerHeight);
+        console.log('  Initial viewport height:', this.initialViewportHeight);
+        console.log('  Visual viewport height:', window.visualViewport ? window.visualViewport.height : 'Not supported');
+        console.log('  Height difference:', this.initialViewportHeight - window.innerHeight);
+    }
+    
+    // KEYBOARD FIX: Force keyboard state (useful for testing)
+    forceKeyboardState(isOpen) {
+        this.isKeyboardOpen = isOpen;
+        if (isOpen) {
+            this.elements.container.classList.add('keyboard-open');
+            this.scrollInputIntoView();
+        } else {
+            this.elements.container.classList.remove('keyboard-open');
+        }
+        console.log('🔧 Forced keyboard state:', isOpen);
+    }
+    
     // Utility method for clearing conversation (useful for testing)
     async clearConversation() {
         try {
@@ -333,17 +503,17 @@ getApiUrl() {
                     </div>
                 </div>
                 <div class="suggested-questions">
-                    <button class="suggestion-btn" data-question="What are Qais's main skills?">
-                        💻 What are Qais's main skills?
+                    <button class="suggestion-btn" data-question="What projects has Qais built?">
+                        🚀 What projects has Qais built?
                     </button>
-                    <button class="suggestion-btn" data-question="Tell me about MedClassify project">
+                    <button class="suggestion-btn" data-question="Tell me about MedClassify">
                         🏥 Tell me about MedClassify
                     </button>
-                    <button class="suggestion-btn" data-question="What is Qais's experience with AI?">
-                        🤖 What's his AI experience?
+                    <button class="suggestion-btn" data-question="What are his main technical skills?">
+                        💻 What are his main skills?
                     </button>
-                    <button class="suggestion-btn" data-question="Where did Qais study?">
-                        🎓 Where did he study?
+                    <button class="suggestion-btn" data-question="Tell me about his education">
+                        🎓 Education background
                     </button>
                 </div>
             `;
@@ -375,7 +545,9 @@ getApiUrl() {
 // Initialize chat widget when DOM is ready
 const portfolioChatWidget = new PortfolioChatWidget();
 
-// Export for potential external use
-
+// Export for potential external use and debugging
 window.PortfolioChatWidget = portfolioChatWidget;
 
+// KEYBOARD FIX: Add debug methods to window for testing
+window.debugKeyboard = () => portfolioChatWidget.debugKeyboard();
+window.forceKeyboard = (isOpen) => portfolioChatWidget.forceKeyboardState(isOpen);
