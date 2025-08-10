@@ -20,13 +20,14 @@ class PortfolioChatWidget {
         this.init();
     }
     
-   getApiUrl() {
+   
+getApiUrl() {
     const hostname = window.location.hostname;
     const isDevelopment = hostname === 'localhost' || hostname === '127.0.0.1';
     
     return isDevelopment 
         ? 'http://localhost:5000'
-        : 'https://portfolio-rag-api-pwag7phooa-uc.a.run.app';
+        : 'https://portfolio-rag-api-1001825982330.us-central1.run.app';
 }
     
     getOrCreateSession() {
@@ -377,3 +378,4 @@ const portfolioChatWidget = new PortfolioChatWidget();
 // Export for potential external use
 
 window.PortfolioChatWidget = portfolioChatWidget;
+
