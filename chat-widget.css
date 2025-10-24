@@ -1,4 +1,173 @@
-/* Industry-Standard Mobile Chat CSS - KEYBOARD FIX VERSION */
+/* Industry-Standard Mobile Chat CSS */
+
+/* Markdown formatting fixes for chat messages */
+.message-content h1, 
+.message-content h2, 
+.message-content h3, 
+.message-content h4, 
+.message-content h5, 
+.message-content h6 {
+    font-size: 1.1em !important;
+    font-weight: 600 !important;
+    margin: 0.5em 0 !important;
+    line-height: 1.4 !important;
+    color: inherit !important;
+    font-family: inherit !important;
+}
+
+.message-content ul, 
+.message-content ol {
+    margin: 0.5em 0 !important;
+    padding-left: 1.2em !important;
+    list-style-position: outside !important;
+}
+
+.message-content li {
+    margin: 0.2em 0 !important;
+    line-height: 1.4 !important;
+}
+
+.message-content p {
+    margin: 0.3em 0 !important;
+    line-height: 1.5 !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* Professional List Styling */
+.message-content ul {
+    margin: 0.5em 0 !important;
+    padding-left: 1.2em !important;
+    list-style: none !important;
+}
+
+.message-content ul li {
+    margin: 0.3em 0 !important;
+    padding-left: 0.5em !important;
+    position: relative !important;
+}
+
+.message-content ul li:before {
+    content: "•" !important;
+    color: #667eea !important;
+    font-weight: bold !important;
+    position: absolute !important;
+    left: -0.5em !important;
+}
+
+.message-content ol {
+    margin: 0.5em 0 !important;
+    padding-left: 1.5em !important;
+}
+
+.message-content ol li {
+    margin: 0.3em 0 !important;
+    padding-left: 0.3em !important;
+}
+
+/* Better text formatting */
+.message-content {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: #2d3748 !important;
+}
+
+.dark-mode .message-content {
+    color: #e2e8f0 !important;
+}
+
+.dark-mode .message-content ul li:before {
+    color: #8b9dc3 !important;
+}
+
+.message-content strong {
+    font-weight: 600 !important;
+    color: inherit !important;
+}
+
+.message-content em {
+    font-style: italic !important;
+}
+
+.message-content code {
+    font-size: 0.9em !important;
+    background: rgba(0,0,0,0.1) !important;
+    padding: 0.2em 0.4em !important;
+    border-radius: 3px !important;
+}
+
+/* Professional Industry-Standard Chat Links */
+.chat-link {
+    color: #0066cc !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+    background: rgba(0, 102, 204, 0.08) !important;
+    border: 1px solid rgba(0, 102, 204, 0.15) !important;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 0.9em !important;
+    white-space: nowrap !important;
+    margin: 1px 2px !important;
+}
+
+.chat-link:before {
+    content: "🔗" !important;
+    font-size: 0.8em !important;
+    opacity: 0.7 !important;
+}
+
+.chat-link:hover {
+    background: rgba(0, 102, 204, 0.12) !important;
+    border-color: rgba(0, 102, 204, 0.25) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15) !important;
+}
+
+.chat-link:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 1px 3px rgba(0, 102, 204, 0.2) !important;
+}
+
+/* Dark mode professional styling */
+.dark-mode .chat-link {
+    color: #4da6ff !important;
+    background: rgba(77, 166, 255, 0.1) !important;
+    border-color: rgba(77, 166, 255, 0.2) !important;
+}
+
+.dark-mode .chat-link:hover {
+    background: rgba(77, 166, 255, 0.15) !important;
+    border-color: rgba(77, 166, 255, 0.3) !important;
+    box-shadow: 0 2px 8px rgba(77, 166, 255, 0.15) !important;
+    font-family: 'Courier New', monospace !important;
+    word-break: break-all !important;
+}
+
+.message-content pre {
+    background: rgba(0,0,0,0.1) !important;
+    padding: 0.8em !important;
+    border-radius: 6px !important;
+    overflow-x: auto !important;
+    margin: 0.5em 0 !important;
+}
+
+.message-content a {
+    color: #667eea !important;
+    text-decoration: underline !important;
+    word-break: break-all !important;
+}
+
+.message-content blockquote {
+    border-left: 3px solid #667eea !important;
+    margin: 0.5em 0 !important;
+    padding-left: 1em !important;
+    font-style: italic !important;
+    opacity: 0.8 !important;
+}
 
 /* Base reset for chat widget */
 #ai-chat-widget * {
@@ -87,7 +256,7 @@
     }
 }
 
-/* Chat Container - KEYBOARD FIX APPLIED */
+/* Chat Container - Industry Standard Grid Layout */
 .chat-container {
     position: absolute;
     bottom: 80px;
@@ -116,14 +285,6 @@
     display: flex;
     transform: translateY(0) scale(1);
     opacity: 1;
-}
-
-/* KEYBOARD FIX: Add class when keyboard is detected */
-.chat-container.keyboard-open {
-    position: fixed !important;
-    bottom: 10px !important;
-    height: calc(100vh - 120px) !important;
-    max-height: calc(100vh - 120px) !important;
 }
 
 /* Dark mode support */
@@ -201,7 +362,7 @@
     background: rgba(255, 255, 255, 0.1);
 }
 
-/* Chat Messages - KEYBOARD FIX */
+/* Chat Messages - Industry Standard Message Layout */
 .chat-messages {
     flex: 1;
     overflow-y: auto;
@@ -215,9 +376,6 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    
-    /* KEYBOARD FIX: Ensure messages don't get cut off */
-    min-height: 0;
 }
 
 .dark-mode .chat-messages {
@@ -367,17 +525,13 @@
     border-color: #667eea;
 }
 
-/* Chat Input - KEYBOARD FIX APPLIED */
+/* Chat Input */
 .chat-input-container {
     padding: 16px;
     background: white;
     border-top: 1px solid #e0e0e0;
     flex-shrink: 0;
     border-radius: 0 0 20px 20px;
-    
-    /* KEYBOARD FIX: Ensure input container stays visible */
-    position: relative;
-    z-index: 1;
 }
 
 .dark-mode .chat-input-container {
@@ -405,10 +559,6 @@
     max-height: 100px;
     font-family: inherit;
     line-height: 1.4;
-    
-    /* KEYBOARD FIX: Prevent zoom on iOS */
-    font-size: 16px;
-    -webkit-appearance: none;
 }
 
 .dark-mode #chat-input {
@@ -506,7 +656,7 @@
     }
 }
 
-/* MOBILE RESPONSIVE - KEYBOARD FIX VERSION */
+/* INDUSTRY STANDARD MOBILE RESPONSIVE */
 @media (max-width: 480px) {
     #ai-chat-widget {
         bottom: 16px;
@@ -521,43 +671,50 @@
         right: 16px;
     }
     
-    /* KEYBOARD FIX: Mobile fullscreen with keyboard handling */
     .chat-container {
+        /* Full screen mobile - WhatsApp/Telegram style */
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh; /* Dynamic viewport height for keyboard */
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
         border-radius: 0;
         transform: translateX(100%);
         opacity: 1;
+        z-index: 9999;
+        background: white;
+        margin: 0;
+    }
+    
+    .dark-mode .chat-container {
+        background: #1a1a1a;
     }
     
     .chat-container.open {
         transform: translateX(0);
     }
     
-    /* KEYBOARD FIX: Adjust when keyboard is open */
-    .chat-container.keyboard-open {
-        height: 100vh !important;
-        height: 100dvh !important;
-        bottom: 0 !important;
-    }
-    
     .chat-header {
         border-radius: 0;
         padding: 12px 16px;
-        padding-top: max(12px, env(safe-area-inset-top));
+        padding-top: max(12px, env(safe-area-inset-top, 0px));
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
     
     .chat-messages {
-        padding: 12px;
-        /* KEYBOARD FIX: Ensure proper scrolling */
+        padding: 12px 16px;
+        background: #f8f9fa;
+        flex: 1;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+    }
+    
+    .dark-mode .chat-messages {
+        background: #111;
     }
     
     .message-content {
@@ -566,36 +723,23 @@
     }
     
     .chat-input-container {
-        padding: 12px;
-        padding-bottom: max(12px, env(safe-area-inset-bottom));
+        padding: 12px 16px;
+        padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
         border-radius: 0;
-        
-        /* KEYBOARD FIX: Ensure input stays above keyboard */
-        position: sticky;
-        bottom: 0;
         background: white;
+        border-top: 1px solid #e0e0e0;
+        flex-shrink: 0;
     }
     
     .dark-mode .chat-input-container {
         background: #1a1a1a;
-    }
-    
-    /* KEYBOARD FIX: Larger touch target for mobile */
-    #chat-input {
-        font-size: 16px; /* Prevents zoom on iOS */
-        min-height: 40px;
-        padding: 10px 16px;
-    }
-    
-    #chat-send {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
+        border-top-color: #333;
     }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
     .chat-container {
+        /* Back to normal chat widget behavior */
         position: absolute;
         bottom: 80px;
         right: 0;
@@ -612,17 +756,9 @@
         transform: translateY(0) scale(1);
         opacity: 1;
     }
-    
-    /* KEYBOARD FIX: Tablet keyboard handling */
-    .chat-container.keyboard-open {
-        position: fixed !important;
-        bottom: 10px !important;
-        height: calc(100vh - 120px) !important;
-        max-height: calc(100vh - 120px) !important;
-    }
 }
 
-/* Small phones - KEYBOARD FIX */
+/* Small phones */
 @media (max-width: 360px) {
     .message-content {
         max-width: calc(100% - 28px);
@@ -636,30 +772,7 @@
     
     .chat-input-container {
         padding: 8px;
-        padding-bottom: max(8px, env(safe-area-inset-bottom));
-    }
-    
-    #chat-input {
-        font-size: 16px; /* Critical: Prevents zoom */
-        min-height: 38px;
-    }
-}
-
-/* KEYBOARD FIX: Landscape orientation on mobile */
-@media (max-width: 850px) and (orientation: landscape) {
-    .chat-container {
-        height: 100vh !important;
-        height: 100dvh !important;
-    }
-    
-    .chat-container.keyboard-open {
-        height: calc(100vh - 60px) !important;
-        height: calc(100dvh - 60px) !important;
-    }
-    
-    .chat-messages {
-        max-height: calc(100vh - 180px);
-        max-height: calc(100dvh - 180px);
+        padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 8px);
     }
 }
 
@@ -679,22 +792,4 @@
 
 .dark-mode .chat-messages::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.2);
-}
-
-/* KEYBOARD FIX: Accessibility improvements */
-@media (prefers-reduced-motion: reduce) {
-    .chat-container {
-        transition: none;
-    }
-    
-    .message {
-        animation: none;
-    }
-}
-
-/* KEYBOARD FIX: Support for fold phones */
-@media (max-width: 480px) and (max-height: 600px) {
-    .chat-container.keyboard-open {
-        height: calc(100vh - 40px) !important;
-    }
 }

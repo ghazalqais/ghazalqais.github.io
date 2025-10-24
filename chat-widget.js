@@ -123,6 +123,14 @@ class PortfolioChatWidget {
         this.elements.container.classList.add('open');
         this.isOpen = true;
         
+        // Prevent background scroll on mobile
+        if (window.innerWidth <= 480) {
+            document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+            document.body.style.height = '100%';
+        }
+        
         // Focus input after animation
         setTimeout(() => {
             this.elements.input.focus();
@@ -135,6 +143,14 @@ class PortfolioChatWidget {
         this.elements.toggle.classList.remove('active');
         this.elements.container.classList.remove('open');
         this.isOpen = false;
+        
+        // Restore background scroll on mobile
+        if (window.innerWidth <= 480) {
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+            document.body.style.height = '';
+        }
         
         this.trackEvent('chat_closed');
     }
