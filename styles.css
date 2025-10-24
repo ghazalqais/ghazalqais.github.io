@@ -165,7 +165,7 @@ p {
 /* ===== HEADER & NAVIGATION ===== */
 header {
   background-color: rgba(18, 18, 45, 0.95);
-  padding: 0;
+  padding: var(--space-md) 0;
   position: fixed;
   width: 100%;
   top: 0;
@@ -177,11 +177,7 @@ header {
 
 header.sticky {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-header .container {
-  max-width: 100%;
-  padding: 0 2rem;
+  padding: var(--space-sm) 0;
 }
 
 .logo {
@@ -201,18 +197,11 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.25rem 0;
-  position: relative;
 }
 
 .nav-links {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
+  gap: calc(var(--space-xl) + 0.5rem);
 }
 
 .nav-links .nav-item {
@@ -220,11 +209,8 @@ nav {
   font-weight: 500;
   opacity: 0.8;
   position: relative;
-  padding: 0.75rem 2rem;
+  padding: var(--space-sm) var(--space-sm);
   transition: opacity var(--transition-normal);
-  font-size: 0.95rem;
-  letter-spacing: 0.3px;
-  white-space: nowrap;
 }
 
 .nav-links .nav-item:hover,
@@ -239,14 +225,13 @@ nav {
   height: 2px;
   background-color: var(--primary-light);
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   transition: width var(--transition-normal);
 }
 
 .nav-links .nav-item:hover::after,
 .nav-links .nav-item.active::after {
-  width: 70%;
+  width: 100%;
 }
 
 .theme-switch {
