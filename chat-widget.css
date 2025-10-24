@@ -99,52 +99,37 @@
 /* Professional Industry-Standard Chat Links */
 .chat-link {
     color: #0066cc !important;
-    text-decoration: none !important;
+    text-decoration: underline !important;
     font-weight: 500 !important;
-    padding: 4px 8px !important;
-    border-radius: 6px !important;
-    background: rgba(0, 102, 204, 0.08) !important;
-    border: 1px solid rgba(0, 102, 204, 0.15) !important;
+    padding: 2px 4px !important;
+    border-radius: 4px !important;
+    background: rgba(0, 102, 204, 0.05) !important;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-    font-size: 0.9em !important;
-    white-space: nowrap !important;
-    margin: 1px 2px !important;
-}
-
-.chat-link:before {
-    content: "🔗" !important;
-    font-size: 0.8em !important;
-    opacity: 0.7 !important;
+    display: inline !important;
+    font-size: 1em !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    margin: 0 !important;
 }
 
 .chat-link:hover {
-    background: rgba(0, 102, 204, 0.12) !important;
-    border-color: rgba(0, 102, 204, 0.25) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15) !important;
+    background: rgba(0, 102, 204, 0.1) !important;
+    color: #0052a3 !important;
 }
 
 .chat-link:active {
-    transform: translateY(0) !important;
-    box-shadow: 0 1px 3px rgba(0, 102, 204, 0.2) !important;
+    background: rgba(0, 102, 204, 0.15) !important;
 }
 
 /* Dark mode professional styling */
 .dark-mode .chat-link {
     color: #4da6ff !important;
-    background: rgba(77, 166, 255, 0.1) !important;
-    border-color: rgba(77, 166, 255, 0.2) !important;
+    background: rgba(77, 166, 255, 0.08) !important;
 }
 
 .dark-mode .chat-link:hover {
     background: rgba(77, 166, 255, 0.15) !important;
-    border-color: rgba(77, 166, 255, 0.3) !important;
-    box-shadow: 0 2px 8px rgba(77, 166, 255, 0.15) !important;
-    font-family: 'Courier New', monospace !important;
-    word-break: break-all !important;
+    color: #66b3ff !important;
 }
 
 .message-content pre {
@@ -156,9 +141,11 @@
 }
 
 .message-content a {
-    color: #667eea !important;
+    color: #0066cc !important;
     text-decoration: underline !important;
-    word-break: break-all !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    display: inline !important;
 }
 
 .message-content blockquote {
@@ -550,7 +537,7 @@
     border: 1px solid #e0e0e0;
     border-radius: 20px;
     padding: 8px 16px;
-    font-size: 14px;
+    font-size: 16px;
     outline: none;
     transition: border-color 0.2s;
     background: #f8f9fa;

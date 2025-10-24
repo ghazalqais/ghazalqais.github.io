@@ -278,10 +278,17 @@ class PortfolioChatWidget {
 
             // Post-process for professional chat links
             html = html.replace(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g, (match, url, linkText) => {
+                // Extract trailing punctuation to preserve it after the link
+                let trailingPunctuation = '';
+                const punctMatch = url.match(/[.,!?]+$/);
+                if (punctMatch) {
+                    trailingPunctuation = punctMatch[0];
+                }
+
                 // Clean URL by removing trailing punctuation (., !, ?, ,)
                 let cleanUrl = url.replace(/[.,!?]+$/, '');
                 let cleanLinkText = linkText.replace(/[.,!?]+$/, '');
-                
+
                 // Extract clean domain name for display if it's just a URL
                 if (cleanLinkText === cleanUrl || linkText === url) {
                     try {
@@ -300,7 +307,7 @@ class PortfolioChatWidget {
                     }
                 }
 
-                return `<a href="${cleanUrl}" target="_blank" rel="noopener" class="chat-link">${cleanLinkText}</a>`;
+                return `<a href="${cleanUrl}" target="_blank" rel="noopener" class="chat-link">${cleanLinkText}</a>${trailingPunctuation}`;
             });
 
             return html;

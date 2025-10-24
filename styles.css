@@ -165,7 +165,7 @@ p {
 /* ===== HEADER & NAVIGATION ===== */
 header {
   background-color: rgba(18, 18, 45, 0.95);
-  padding: var(--space-md) 0;
+  padding: 0;
   position: fixed;
   width: 100%;
   top: 0;
@@ -177,7 +177,11 @@ header {
 
 header.sticky {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  padding: var(--space-sm) 0;
+}
+
+header .container {
+  max-width: 100%;
+  padding: 0 2rem;
 }
 
 .logo {
@@ -197,11 +201,18 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1.25rem 0;
+  position: relative;
 }
 
 .nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: calc(var(--space-xl) + 0.5rem);
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-links .nav-item {
@@ -209,8 +220,11 @@ nav {
   font-weight: 500;
   opacity: 0.8;
   position: relative;
-  padding: var(--space-sm) var(--space-sm);
+  padding: 0.75rem 2rem;
   transition: opacity var(--transition-normal);
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
 }
 
 .nav-links .nav-item:hover,
@@ -225,13 +239,14 @@ nav {
   height: 2px;
   background-color: var(--primary-light);
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   transition: width var(--transition-normal);
 }
 
 .nav-links .nav-item:hover::after,
 .nav-links .nav-item.active::after {
-  width: 100%;
+  width: 70%;
 }
 
 .theme-switch {
@@ -245,9 +260,9 @@ nav {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-full);
   cursor: pointer;
-  margin-right: var(--space-md);
   transition: background-color var(--transition-normal),
     transform var(--transition-normal);
+  margin-right: var(--space-md);
 }
 
 .theme-switch:hover {
@@ -637,6 +652,12 @@ body.dark-mode #expertise {
   font-size: 0.9rem;
 }
 
+body.dark-mode .skill-list li {
+  background-color: rgba(126, 140, 255, 0.25);
+  color: #a8b3ff;
+  font-weight: 500;
+}
+
 /* ===== PROJECTS SECTION ===== */
 #projects {
   background-color: var(--background);
@@ -784,6 +805,12 @@ body.dark-mode #expertise {
   padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-full);
   font-size: 0.85rem;
+}
+
+body.dark-mode .tech-tag {
+  background-color: rgba(126, 140, 255, 0.25);
+  color: #a8b3ff;
+  font-weight: 500;
 }
 
 .projects-more {
@@ -1206,6 +1233,17 @@ body.dark-mode #education {
   background: rgba(126, 140, 255, 0.2);
 }
 
+body.dark-mode .timeline-tag {
+  background: rgba(126, 140, 255, 0.25);
+  color: #a8b3ff;
+  font-weight: 500;
+}
+
+body.dark-mode .timeline-item:hover .timeline-tag {
+  background: rgba(126, 140, 255, 0.35);
+  color: #bfc9ff;
+}
+
 /* ===== CONTACT SECTION ===== */
 #contact {
   background-color: var(--background);
@@ -1438,6 +1476,7 @@ body.dark-mode #education {
   transition: all var(--transition-normal);
   color: var(--text-primary);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  font-size: 16px;
 }
 
 .input-wrapper textarea {
@@ -1547,8 +1586,8 @@ footer {
 
 .scroll-top {
   position: fixed;
-  bottom: var(--space-xl);
-  right: var(--space-xl);
+  bottom: 25px;
+  left: 20px;
   z-index: 99;
 }
 
@@ -1738,31 +1777,36 @@ footer {
   .nav-links {
     position: fixed;
     top: 0;
-    right: -100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
     flex-direction: column;
     background-color: var(--dark);
     height: 100vh;
-    width: clamp(250px, 75vw, 280px);
-    padding: calc(var(--header-height) + var(--space-md)) var(--space-md)
-      var(--space-md);
-    gap: var(--space-md);
+    width: 100%;
+    padding: 2rem;
+    gap: 2rem;
     z-index: 900;
-    box-shadow: -8px 0 20px rgba(0, 0, 0, 0.3);
-    transition: right var(--transition-normal);
-    align-items: flex-start;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
   }
   .nav-links.active {
-    right: 0;
+    transform: translateY(0);
   }
   .nav-links .nav-item {
-    font-size: 1.1rem;
-    padding: var(--space-sm) 0;
-    width: 100%;
-    padding: var(--space-md) var(--space-md);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.5rem;
+    width: auto;
+    padding: 1rem 2rem;
+    border-bottom: none;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
-  .theme-switch {
-    margin-right: 0;
+  .nav-links .nav-item::after {
+    display: none;
   }
   body.nav-open {
     overflow: hidden;
@@ -2020,8 +2064,8 @@ footer {
     width: 40px;
     height: 40px;
     font-size: 1rem;
-    bottom: var(--space-md);
-    right: var(--space-md);
+    bottom: 24px;
+    left: 16px;
   }
 }
 
