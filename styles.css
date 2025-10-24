@@ -1796,6 +1796,12 @@ footer {
   body.nav-open {
     overflow: hidden;
   }
+  body.nav-open #ai-chat-widget {
+    display: none;
+  }
+  body.nav-open #scrollToTop {
+    display: none;
+  }
   #hero {
     min-height: auto;
     padding: calc(var(--header-height) + var(--space-md)) 0 var(--space-lg);
