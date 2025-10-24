@@ -289,7 +289,7 @@ class PortfolioChatWidget {
         return text
             .replace(/\n/g, '<br>')
             .replace(/•\s*/g, '<br>• ')
-            .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener" class="chat-link">Link</a>')
+            .replace(/(https?:\/\/[^\s<.,!?]+)/g, '<a href="$1" target="_blank" rel="noopener" class="chat-link">Link</a>')
             .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     }
     
