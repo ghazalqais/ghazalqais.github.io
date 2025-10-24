@@ -1,6 +1,6 @@
 /**
  * Simple Portfolio Chat Widget
- * Clean, focused, production-ready with KEYBOARD FIX
+ * Clean, focused, production-ready
  */
 
 class PortfolioChatWidget {
@@ -14,26 +14,20 @@ class PortfolioChatWidget {
         this.isTyping = false;
         this.conversationStarted = false;
         
-        // KEYBOARD FIX: Add keyboard state
-        this.isKeyboardOpen = false;
-        this.initialViewportHeight = window.innerHeight;
-        
         // DOM elements (set after init)
         this.elements = {};
         
         this.init();
     }
     
-   getApiUrl() {
+    getApiUrl() {
     const hostname = window.location.hostname;
     const isDevelopment = hostname === 'localhost' || hostname === '127.0.0.1';
     
     return isDevelopment 
         ? 'http://localhost:5000'
-        : 'https://portfolio-rag-api-pwag7phooa-uc.a.run.app';
-}
-    
-    getOrCreateSession() {
+        : 'https://portfolio-rag-api-1001825982330.us-central1.run.app';
+}    getOrCreateSession() {
         // Get existing session or create new one
         let sessionId = localStorage.getItem('qais_chat_session');
         if (!sessionId) {
@@ -65,7 +59,6 @@ class PortfolioChatWidget {
         };
         
         this.setupEventListeners();
-        this.setupKeyboardDetection(); // KEYBOARD FIX: Add keyboard detection
         this.loadPreviousConversation();
     }
     
@@ -94,135 +87,6 @@ class PortfolioChatWidget {
         
         // Auto-resize input
         this.elements.input.addEventListener('input', this.autoResizeInput.bind(this));
-    }
-    
-    // KEYBOARD FIX: Setup keyboard detection
-    setupKeyboardDetection() {
-        // Method 1: Visual Viewport API (modern browsers)
-        if (window.visualViewport) {
-            window.visualViewport.addEventListener('resize', () => this.handleKeyboard());
-        }
-        
-        // Method 2: Window resize fallback
-        window.addEventListener('resize', () => this.handleKeyboardFallback());
-        
-        // Method 3: Input focus/blur events (most reliable for mobile)
-        this.elements.input.addEventListener('focus', () => this.handleInputFocus());
-        this.elements.input.addEventListener('blur', () => this.handleInputBlur());
-        
-        // Method 4: Screen orientation change
-        if (screen && screen.orientation) {
-            screen.orientation.addEventListener('change', () => {
-                setTimeout(() => this.handleOrientationChange(), 500);
-            });
-        }
-    }
-    
-    // KEYBOARD FIX: Handle keyboard using Visual Viewport API
-    handleKeyboard() {
-        if (!window.visualViewport) return;
-        
-        const viewport = window.visualViewport;
-        const heightDiff = window.innerHeight - viewport.height;
-        
-        if (heightDiff > 150) { // Keyboard is likely open
-            if (!this.isKeyboardOpen) {
-                this.isKeyboardOpen = true;
-                this.elements.container.classList.add('keyboard-open');
-                this.scrollInputIntoView();
-                console.log('🎹 Keyboard detected (Visual Viewport)');
-            }
-        } else {
-            if (this.isKeyboardOpen) {
-                this.isKeyboardOpen = false;
-                this.elements.container.classList.remove('keyboard-open');
-                console.log('🎹 Keyboard hidden (Visual Viewport)');
-            }
-        }
-    }
-    
-    // KEYBOARD FIX: Fallback method using window resize
-    handleKeyboardFallback() {
-        const heightDiff = this.initialViewportHeight - window.innerHeight;
-        
-        if (heightDiff > 150) {
-            if (!this.isKeyboardOpen) {
-                this.isKeyboardOpen = true;
-                this.elements.container.classList.add('keyboard-open');
-                this.scrollInputIntoView();
-                console.log('🎹 Keyboard detected (Resize fallback)');
-            }
-        } else {
-            if (this.isKeyboardOpen) {
-                this.isKeyboardOpen = false;
-                this.elements.container.classList.remove('keyboard-open');
-                console.log('🎹 Keyboard hidden (Resize fallback)');
-            }
-        }
-    }
-    
-    // KEYBOARD FIX: Handle input focus (most reliable)
-    handleInputFocus() {
-        // Only on mobile devices
-        if (window.innerWidth <= 480) {
-            setTimeout(() => {
-                this.isKeyboardOpen = true;
-                this.elements.container.classList.add('keyboard-open');
-                this.scrollInputIntoView();
-                console.log('🎹 Keyboard detected (Input focus)');
-            }, 300); // Delay to allow keyboard animation
-        }
-    }
-    
-    // KEYBOARD FIX: Handle input blur
-    handleInputBlur() {
-        // Delay to avoid flicker when tapping send button
-        setTimeout(() => {
-            if (!this.elements.input.matches(':focus')) {
-                this.isKeyboardOpen = false;
-                this.elements.container.classList.remove('keyboard-open');
-                console.log('🎹 Keyboard hidden (Input blur)');
-            }
-        }, 100);
-    }
-    
-    // KEYBOARD FIX: Handle orientation change
-    handleOrientationChange() {
-        // Update initial height
-        this.initialViewportHeight = window.innerHeight;
-        
-        // Reset keyboard state to prevent stuck states
-        if (this.isKeyboardOpen && !this.elements.input.matches(':focus')) {
-            this.isKeyboardOpen = false;
-            this.elements.container.classList.remove('keyboard-open');
-        }
-        
-        console.log('📱 Orientation changed, reset keyboard state');
-    }
-    
-    // KEYBOARD FIX: Scroll input into view
-    scrollInputIntoView() {
-        setTimeout(() => {
-            // Multiple scroll strategies
-            this.elements.input.scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'center',
-                inline: 'nearest'
-            });
-            
-            // Backup scroll method
-            setTimeout(() => {
-                const inputRect = this.elements.input.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                
-                if (inputRect.bottom > windowHeight - 20) {
-                    window.scrollTo({
-                        top: window.pageYOffset + (inputRect.bottom - windowHeight + 40),
-                        behavior: 'smooth'
-                    });
-                }
-            }, 100);
-        }, 100);
     }
     
     async loadPreviousConversation() {
@@ -271,12 +135,6 @@ class PortfolioChatWidget {
         this.elements.toggle.classList.remove('active');
         this.elements.container.classList.remove('open');
         this.isOpen = false;
-        
-        // KEYBOARD FIX: Reset keyboard state when closing
-        if (this.isKeyboardOpen) {
-            this.isKeyboardOpen = false;
-            this.elements.container.classList.remove('keyboard-open');
-        }
         
         this.trackEvent('chat_closed');
     }
@@ -333,7 +191,7 @@ class PortfolioChatWidget {
                     message_length: message.length 
                 });
             } else {
-                this.addMessage('Sorry, I encountered an error. Please try again.', 'bot');
+                    this.addMessage("Hmm, something didn't work there. Mind giving it another try?", 'bot');
             }
             
         } catch (error) {
@@ -342,20 +200,13 @@ class PortfolioChatWidget {
             
             // User-friendly error message
             const errorMsg = error.message.includes('fetch') 
-                ? "I'm having trouble connecting. Please check your internet connection and try again."
-                : "Sorry, something went wrong. Please try again in a moment.";
-            
+                ? "Can't seem to reach my brain right now. Check your connection?"
+                : "Oops, I'm having a moment. Try that again?";
+
             this.addMessage(errorMsg, 'bot');
         }
-        
-        // KEYBOARD FIX: Re-focus input after sending (keeps keyboard open)
-        if (this.isKeyboardOpen && window.innerWidth <= 480) {
-            setTimeout(() => {
-                this.elements.input.focus();
-            }, 100);
-        }
     }
-    
+
     addMessage(text, sender, animate = true) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message', `${sender}-message`);
@@ -396,20 +247,51 @@ class PortfolioChatWidget {
     }
     
     formatMessage(text) {
-    return text
-        .replace(/\n/g, '<br>')
-        // Fix spacing issues
-        .replace(/\.([A-Z])/g, '. $1')  // Add space after period before capital letter
-        .replace(/:(•)/g, ':<br>$1')    // Line break after colon before bullet
-        .replace(/•/g, '<br>• ')        // Line break and space before bullets
-        // Make URLs clickable
-        .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener" style="color: #667eea; text-decoration: underline;">$1</a>')
-        // Clean formatting
-        .replace(/\*\*\*([^*]+)\*\*\*/g, '<strong>$1</strong>')
-        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-        .replace(/\*+/g, '');
-}
+        // Industry-standard markdown parsing with marked.js
+        if (typeof marked !== 'undefined') {
+            // Configure marked for chat messages
+            marked.setOptions({
+                breaks: true, // Convert line breaks to <br>
+                gfm: true,    // GitHub Flavored Markdown
+                sanitize: false, // We trust our backend
+                smartypants: false // Keep it simple for chat
+            });
+            
+            // Parse markdown to HTML
+            let html = marked.parse(text);
+            
+            // Post-process for professional chat links
+            html = html.replace(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g, (match, url, linkText) => {
+                // Extract clean domain name for display if it's just a URL
+                if (linkText === url) {
+                    try {
+                        const urlObj = new URL(url);
+                        let displayText = urlObj.hostname.replace('www.', '');
+                        
+                        // Clean domain display - let domains be recognizable naturally
+                        if (displayText.length > 20) {
+                            displayText = displayText.substring(0, 15) + '...';
+                        }
+                        
+                        linkText = displayText;
+                    } catch (e) {
+                        // Keep original if URL parsing fails
+                    }
+                }
+                
+                return `<a href="${url}" target="_blank" rel="noopener" class="chat-link">${linkText}</a>`;
+            });
+            
+            return html;
+        }
+        
+        // Fallback if marked.js fails to load
+        return text
+            .replace(/\n/g, '<br>')
+            .replace(/•\s*/g, '<br>• ')
+            .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener" class="chat-link">Link</a>')
+            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    }
     
     showTyping() {
         this.isTyping = true;
@@ -460,30 +342,6 @@ class PortfolioChatWidget {
         }
     }
     
-    // KEYBOARD FIX: Add debug method for testing keyboard detection
-    debugKeyboard() {
-        console.log('🔍 Keyboard Debug Info:');
-        console.log('  isKeyboardOpen:', this.isKeyboardOpen);
-        console.log('  Container has keyboard-open class:', this.elements.container.classList.contains('keyboard-open'));
-        console.log('  Input is focused:', this.elements.input.matches(':focus'));
-        console.log('  Window inner height:', window.innerHeight);
-        console.log('  Initial viewport height:', this.initialViewportHeight);
-        console.log('  Visual viewport height:', window.visualViewport ? window.visualViewport.height : 'Not supported');
-        console.log('  Height difference:', this.initialViewportHeight - window.innerHeight);
-    }
-    
-    // KEYBOARD FIX: Force keyboard state (useful for testing)
-    forceKeyboardState(isOpen) {
-        this.isKeyboardOpen = isOpen;
-        if (isOpen) {
-            this.elements.container.classList.add('keyboard-open');
-            this.scrollInputIntoView();
-        } else {
-            this.elements.container.classList.remove('keyboard-open');
-        }
-        console.log('🔧 Forced keyboard state:', isOpen);
-    }
-    
     // Utility method for clearing conversation (useful for testing)
     async clearConversation() {
         try {
@@ -498,22 +356,22 @@ class PortfolioChatWidget {
                         <i class="fas fa-robot"></i>
                     </div>
                     <div class="message-content">
-                        <p>Hi! I'm Qais's AI assistant. Ask me anything about his projects, skills, experience, or background!</p>
+                        <p>Hey! I'm here to chat about Qais's work and background. What would you like to know?</p>
                         <div class="message-time">Just now</div>
                     </div>
                 </div>
                 <div class="suggested-questions">
-                    <button class="suggestion-btn" data-question="What projects has Qais built?">
-                        🚀 What projects has Qais built?
+                    <button class="suggestion-btn" data-question="What are Qais's main skills?">
+                        💻 What are Qais's main skills?
                     </button>
-                    <button class="suggestion-btn" data-question="Tell me about MedClassify">
+                    <button class="suggestion-btn" data-question="Tell me about MedClassify project">
                         🏥 Tell me about MedClassify
                     </button>
-                    <button class="suggestion-btn" data-question="What are his main technical skills?">
-                        💻 What are his main skills?
+                    <button class="suggestion-btn" data-question="What is Qais's experience with AI?">
+                        🤖 What's his AI experience?
                     </button>
-                    <button class="suggestion-btn" data-question="Tell me about his education">
-                        🎓 Education background
+                    <button class="suggestion-btn" data-question="Where did Qais study?">
+                        🎓 Where did he study?
                     </button>
                 </div>
             `;
@@ -545,9 +403,5 @@ class PortfolioChatWidget {
 // Initialize chat widget when DOM is ready
 const portfolioChatWidget = new PortfolioChatWidget();
 
-// Export for potential external use and debugging
+// Export for potential external use
 window.PortfolioChatWidget = portfolioChatWidget;
-
-// KEYBOARD FIX: Add debug methods to window for testing
-window.debugKeyboard = () => portfolioChatWidget.debugKeyboard();
-window.forceKeyboard = (isOpen) => portfolioChatWidget.forceKeyboardState(isOpen);
