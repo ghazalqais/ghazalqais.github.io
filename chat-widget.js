@@ -256,44 +256,47 @@ class PortfolioChatWidget {
                 sanitize: false, // We trust our backend
                 smartypants: false // Keep it simple for chat
             });
-            
+
             // Parse markdown to HTML
             let html = marked.parse(text);
-            
+
             // Post-process for professional chat links
             html = html.replace(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g, (match, url, linkText) => {
+                // Clean URL by removing trailing punctuation (., !, ?, ,)
+                let cleanUrl = url.replace(/[.,!?]+$/, '');
+                let cleanLinkText = linkText.replace(/[.,!?]+$/, '');
+                
                 // Extract clean domain name for display if it's just a URL
-                if (linkText === url) {
+                if (cleanLinkText === cleanUrl || linkText === url) {
                     try {
-                        const urlObj = new URL(url);
+                        const urlObj = new URL(cleanUrl);
                         let displayText = urlObj.hostname.replace('www.', '');
-                        
+
                         // Clean domain display - let domains be recognizable naturally
                         if (displayText.length > 20) {
                             displayText = displayText.substring(0, 15) + '...';
                         }
-                        
-                        linkText = displayText;
+
+                        cleanLinkText = displayText;
                     } catch (e) {
                         // Keep original if URL parsing fails
+                        cleanLinkText = cleanLinkText || cleanUrl;
                     }
                 }
-                
-                return `<a href="${url}" target="_blank" rel="noopener" class="chat-link">${linkText}</a>`;
+
+                return `<a href="${cleanUrl}" target="_blank" rel="noopener" class="chat-link">${cleanLinkText}</a>`;
             });
-            
+
             return html;
         }
-        
+
         // Fallback if marked.js fails to load
         return text
             .replace(/\n/g, '<br>')
             .replace(/•\s*/g, '<br>• ')
-            .replace(/(https?:\/\/[^\s<.,!?]+)/g, '<a href="$1" target="_blank" rel="noopener" class="chat-link">Link</a>')
+            .replace(/(https?:\/\/[^\s<]+?)([.,!?]*)\s/g, '<a href="$1" target="_blank" rel="noopener" class="chat-link">Link</a>$2 ')
             .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    }
-    
-    showTyping() {
+    }    showTyping() {
         this.isTyping = true;
         this.elements.sendBtn.disabled = true;
         this.elements.typing.style.display = 'flex';
