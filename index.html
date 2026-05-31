@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qais Ghazal</title>
+    <meta name="description" content="Qais Ghazal — AI Engineer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #e5e5e5;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            line-height: 1.5;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        main {
+            max-width: 560px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes enter {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 6vw, 3.2rem);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            color: #fafafa;
+            margin-bottom: 1.25rem;
+            transition: transform 0.3s ease-out;
+            will-change: transform;
+        }
+
+        .tagline {
+            font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+            font-weight: 400;
+            color: #737373;
+            line-height: 1.6;
+            margin: 0 auto 2.5rem;
+            max-width: 420px;
+            transition: transform 0.3s ease-out;
+            will-change: transform;
+        }
+
+        .divider {
+            width: 100%;
+            max-width: 120px;
+            height: 1px;
+            background: #1a1a1a;
+            margin: 0 auto 2rem;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.75rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: #737373;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            transition: color 0.25s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #e5e5e5;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #e5e5e5;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .email {
+            color: #e5e5e5;
+        }
+
+        .cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 2rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.6875rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #404040;
+            opacity: 0;
+            animation: enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1.5rem;
+                justify-content: flex-start;
+                padding-top: 22vh;
+            }
+
+            h1 {
+                font-size: 2.4rem;
+            }
+
+            nav {
+                gap: 1.25rem;
+            }
+
+            .cursor-glow {
+                display: none;
+            }
+
+            footer {
+                bottom: 1.5rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <main>
+        <h1 id="name">Qais Ghazal</h1>
+        
+        <p class="tagline" id="tagline">
+            AI Engineer focused on intelligent systems. Currently heads down on a new project. Reach me below.
+        </p>
+        
+        <div class="divider"></div>
+        
+        <nav>
+            <a href="mailto:qaisghazal45@gmail.com" class="email">Email</a>
+            <a href="https://github.com/ghazalqais" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.linkedin.com/in/qais-ghazal-b80b43230/" target="_blank" rel="noopener">LinkedIn</a>
+        </nav>
+    </main>
+
+    <footer>Site under construction</footer>
+
+    <script>
+        const glow = document.getElementById('cursorGlow');
+        const name = document.getElementById('name');
+        const tagline = document.getElementById('tagline');
+
+        if (window.matchMedia('(pointer: fine)').matches) {
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let glowX = mouseX;
+            let glowY = mouseY;
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function animate() {
+                glowX += (mouseX - glowX) * 0.08;
+                glowY += (mouseY - glowY) * 0.08;
+
+                glow.style.left = glowX + 'px';
+                glow.style.top = glowY + 'px';
+
+                const offsetX = (mouseX - window.innerWidth / 2) / window.innerWidth * 6;
+                const offsetY = (mouseY - window.innerHeight / 2) / window.innerHeight * 4;
+
+                name.style.transform = `translate(${offsetX * 0.6}px, ${offsetY * 0.6}px)`;
+                tagline.style.transform = `translate(${offsetX * 0.3}px, ${offsetY * 0.3}px)`;
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+    </script>
+
+</body>
+</html>
