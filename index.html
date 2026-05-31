@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Qais Ghazal</title>
     <meta name="description" content="Qais Ghazal — AI Engineer">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +15,11 @@
             box-sizing: border-box;
         }
 
-        html {
-            font-size: 16px;
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            touch-action: none;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -25,14 +28,12 @@
             background: #0a0a0a;
             color: #e5e5e5;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 2rem;
             line-height: 1.5;
-            overflow-x: hidden;
             cursor: default;
         }
 
@@ -151,8 +152,6 @@
         @media (max-width: 640px) {
             body {
                 padding: 1.5rem;
-                justify-content: flex-start;
-                padding-top: 22vh;
             }
 
             h1 {
@@ -189,7 +188,7 @@
         <h1 id="name">Qais Ghazal</h1>
         
         <p class="tagline" id="tagline">
-            AI Engineer focused on intelligent systems. Currently heads down on a new project. Reach me below.
+            AI Engineer. Reach me below.
         </p>
         
         <div class="divider"></div>
